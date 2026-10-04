@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151B22">
+  <title>Hamza Commerce | عطور</title>
+  <meta property="og:title" content="Hamza Commerce | عطور">
+  <meta property="og:description" content="اختر عطرك والحجم والجودة، وأرسل طلبك عبر واتساب.">
+  <meta property="og:type" content="website">
+  <meta name="description" content="اختر عطرك من Hamza Commerce وأرسل طلبك مباشرة عبر واتساب.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #151B22;
+      --bg: #EFF1F3;
+      --muted: #55606B;
+      --line: #D3D8DD;
+      --wa: #14803F;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    [hidden] { display: none !important; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body {
+      font-family: "Readex Pro", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      padding-bottom: 5.5rem;
+    }
+    .wrap { max-width: 30rem; margin: 0 auto; padding: 1.5rem 1rem 2rem; }
+
+    header { padding: 1.75rem 0 0.5rem; }
+    h1 { font-size: 2.5rem; line-height: 1.1; font-weight: 700; letter-spacing: -0.01em; }
+    header p { margin-top: 0.75rem; color: var(--muted); font-size: 1.05rem; }
+
+    /* بطاقات العطور */
+    .perfume { background: #fff; border-radius: 14px; overflow: hidden; margin-top: 1.25rem; }
+    .panel { padding: 2.25rem 1.25rem 1.5rem; background: var(--c); color: var(--t); }
+    .panel h2 { font-size: 2.1rem; line-height: 1.15; font-weight: 600; direction: ltr; text-align: left; }
+    .body { padding: 0.5rem 1.25rem 1.25rem; }
+    .ultra { --c: #14304F; --t: #F3F6FA; }
+    .sculpture { --c: #3D4247; --t: #F1F2F2; }
+    .coco { --c: #E6D3AE; --t: #46291A; }
+    .cartier { --c: #8F4A12; --t: #FBEFE2; }
+    .nuit { --c: #2B1637; --t: #F4EAF7; }
+    .invictus { --c: #D8B445; --t: #33280A; }
+
+    /* اختيار الحجم والجودة */
+    .seg { border: 0; padding: 0; margin: 0.9rem 0 0; min-width: 0; }
+    .seg legend { font-size: 0.85rem; color: var(--muted); padding: 0; margin-bottom: 0.35rem; }
+    .opts { display: flex; gap: 0.5rem; }
+    .opts label { flex: 1; position: relative; }
+    .opts input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+    .opts span {
+      display: block; text-align: center; padding: 0.65rem 0.5rem;
+      border: 1.5px solid var(--line); border-radius: 8px; font-weight: 600;
+    }
+    .opts input:checked + span { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .opts input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+    .pricerow { display: flex; align-items: center; justify-content: space-between; margin-top: 1.1rem; }
+    .price { font-size: 1.6rem; font-weight: 700; }
+
+    .stepper { display: inline-flex; align-items: center; gap: 0.25rem; }
+    .stepper button {
+      width: 2.75rem; height: 2.75rem; font: inherit; font-size: 1.3rem; line-height: 1;
+      background: #fff; color: var(--ink); border: 1.5px solid var(--line); border-radius: 8px; cursor: pointer;
+    }
+    .stepper output { min-width: 2rem; text-align: center; font-weight: 600; }
+
+    button:focus-visible, .order:focus-visible, .bar:focus-visible, input[type="text"]:focus-visible, .phone:focus-visible {
+      outline: 3px solid var(--ink); outline-offset: 2px;
+    }
+    .add {
+      display: block; width: 100%; margin-top: 1rem; padding: 0.85rem 1rem;
+      font: inherit; font-weight: 600; background: var(--ink); color: #fff;
+      border: 0; border-radius: 8px; cursor: pointer;
+    }
+
+    /* السلة */
+    .cart { background: #fff; border-radius: 14px; margin-top: 2rem; padding: 1.25rem; scroll-margin-top: 1rem; }
+    .cart h2 { font-size: 1.5rem; font-weight: 700; }
+    #empty { margin-top: 0.5rem; color: var(--muted); }
+    #lines { list-style: none; padding: 0; margin-top: 0.5rem; }
+    #lines li {
+      display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 0.75rem;
+      padding: 0.9rem 0; border-bottom: 1px solid var(--line); align-items: center;
+    }
+    .lname { display: block; direction: ltr; text-align: right; font-weight: 600; }
+    .lsub { color: var(--muted); font-size: 0.9rem; }
+    .lprice { font-weight: 600; }
+    .total { display: flex; justify-content: space-between; margin-top: 1rem; font-size: 1.2rem; }
+    .total strong { font-weight: 700; }
+    .field { display: block; margin-top: 1rem; }
+    .field span { display: block; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .field input {
+      width: 100%; padding: 0.75rem; font: inherit; font-size: 1rem;
+      border: 1.5px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+    }
+    .order {
+      display: block; margin-top: 1.25rem; padding: 0.9rem 1rem; background: var(--wa); color: #fff;
+      text-align: center; text-decoration: none; font-weight: 600; border-radius: 8px;
+    }
+    .order[aria-disabled="true"] { background: #9AA3AB; pointer-events: none; }
+    .clear {
+      display: block; margin: 1rem auto 0; padding: 0.5rem 0.75rem; font: inherit; font-size: 0.9rem;
+      background: none; color: var(--muted); border: 0; text-decoration: underline; cursor: pointer;
+    }
+    .note { margin-top: 0.75rem; font-size: 0.88rem; color: var(--muted); }
+
+    /* شريط السلة السفلي */
+    .bar {
+      position: fixed; inset-inline: 0; bottom: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 30rem; margin: 0 auto; padding: 1rem 1.25rem;
+      background: var(--ink); color: #fff; text-decoration: none; font-weight: 600;
+      border-radius: 14px 14px 0 0;
+    }
+
+    footer { margin-top: 2rem; text-align: center; color: var(--muted); }
+    .phone { color: var(--ink); font-weight: 600; direction: ltr; unicode-bidi: embed; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Hamza Commerce</h1>
+      <p>اختر عطرك والحجم والجودة، وأرسل طلبك عبر واتساب.</p>
+    </header>
+
+    <main>
+      <div id="perfumes"></div>
+
+      <section id="cart" class="cart" aria-labelledby="cart-title">
+        <h2 id="cart-title">سلتك</h2>
+        <p id="empty">السلة فارغة. اختر عطرًا وأضفه.</p>
+        <ul id="lines"></ul>
+
+        <div id="checkout" hidden>
+          <p class="total"><span>المجموع</span> <strong id="total"></strong></p>
+          <label class="field"><span>الاسم (اختياري)</span><input id="cname" type="text" autocomplete="name"></label>
+          <label class="field"><span>العنوان أو الولاية (اختياري)</span><input id="caddr" type="text" autocomplete="street-address"></label>
+          <button type="button" id="clear" class="clear">تفريغ السلة</button>
+        </div>
+
+        <a id="send" class="order" href="#cart" target="_blank" rel="noopener" aria-disabled="true">أرسل الطلب عبر واتساب</a>
+        <p class="note">سيفتح واتساب برسالة جاهزة بطلبك، وتتفق معنا هناك على التوصيل والدفع.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>للطلب والاستفسار: <a class="phone" href="tel:0697727371">0697727371</a></p>
+      <p><a id="wa-contact" class="phone" href="#" target="_blank" rel="noopener">راسلنا على واتساب</a></p>
+    </footer>
+  </div>
+
+  <a id="bar" class="bar" href="#cart" hidden>
+    <span id="barCount"></span>
+    <span id="barTotal"></span>
+  </a>
+
+  <script>
+    /* ====== إعدادات المحل: بدّل هنا الأسماء والأسعار ====== */
+    const PHONE = "213697727371";                 // رقم الواتساب مع رمز الجزائر
+    const PERFUMES = [                            // لإضافة عطر: زد سطرًا
+      { name: "Ultra Male",   theme: "ultra" },
+      { name: "Sculpture",    theme: "sculpture" },
+      { name: "Coco Vanille", theme: "coco" },
+      { name: "Cartier Déclaration", theme: "cartier" },
+      { name: "La Nuit de l'Homme", theme: "nuit" },
+      { name: "Invictus Victory", theme: "invictus" }
+    ];
+    const SIZES = ["12 مل", "25 مل"];
+    const QUALITIES = ["عادي", "جودة عالية"];
+    const PRICES = {                              // الأسعار بالألف: [عادي, جودة عالية]
+      "12 مل": [25, 50],
+      "25 مل": [50, 100]
+    };
+    /* ================================================== */
+
+    const $ = function (s) { return document.querySelector(s); };
+    const fmt = function (n) { return n + " ألف"; };
+    const unit = function (size, q) { return PRICES[size][q]; };
+    const cart = [];
+    const KEY = "hamza-cart";
+
+    function saveCart() {
+      try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) {}
+    }
+    function loadCart() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(KEY) || "[]");
+        raw.forEach(function (l) {
+          const ok = PERFUMES.some(function (p) { return p.name === l.name; }) &&
+            PRICES[l.size] && (l.q === 0 || l.q === 1) && l.qty >= 1 && l.qty <= 20;
+          if (ok) { cart.push({ name: l.name, size: l.size, q: l.q, qty: l.qty }); }
+        });
+      } catch (e) {}
+    }
+
+    function cardHTML(p, i) {
+      const sizes = SIZES.map(function (s, k) {
+        return '<label><input type="radio" name="size' + i + '" value="' + s + '"' + (k === 0 ? " checked" : "") + '><span>' + s + '</span></label>';
+      }).join("");
+      const quals = QUALITIES.map(function (q, k) {
+        return '<label><input type="radio" name="q' + i + '" value="' + k + '"' + (k === 0 ? " checked" : "") + '><span>' + q + '</span></label>';
+      }).join("");
+      return '<section class="perfume ' + p.theme + '" data-i="' + i + '">' +
+        '<div class="panel"><h2>' + p.name + '</h2></div>' +
+        '<div class="body">' +
+          '<fieldset class="seg"><legend>الحجم</legend><div class="opts">' + sizes + '</div></fieldset>' +
+          '<fieldset class="seg"><legend>الجودة</legend><div class="opts">' + quals + '</div></fieldset>' +
+          '<div class="pricerow">' +
+            '<p class="price" aria-live="polite"></p>' +
+            '<div class="stepper">' +
+              '<button type="button" data-act="inc" aria-label="زيادة الكمية">+</button>' +
+              '<output>1</output>' +
+              '<button type="button" data-act="dec" aria-label="إنقاص الكمية">−</button>' +
+            '</div>' +
+          '</div>' +
+          '<button type="button" class="add" data-act="add">أضف إلى السلة</button>' +
+        '</div></section>';
+    }
+
+    function selection(card) {
+      const i = +card.dataset.i;
+      return {
+        name: PERFUMES[i].name,
+        size: card.querySelector('input[name="size' + i + '"]:checked').value,
+        q: +card.querySelector('input[name="q' + i + '"]:checked').value
+      };
+    }
+
+    function updatePrice(card) {
+      const s = selection(card);
+      card.querySelector(".price").textContent = fmt(unit(s.size, s.q));
+    }
+
+    function addToCart(item) {
+      const found = cart.find(function (l) { return l.name === item.name && l.size === item.size && l.q === item.q; });
+      if (found) { found.qty += item.qty; } else { cart.push(item); }
+      renderCart();
+    }
+
+    function updateSend() {
+      const a = $("#send");
+      if (!cart.length) {
+        a.href = "#cart";
+        a.setAttribute("aria-disabled", "true");
+        return;
+      }
+      const lines = cart.map(function (l) {
+        return "- " + l.name + " | " + l.size + " | " + QUALITIES[l.q] + " × " + l.qty + " = " + fmt(unit(l.size, l.q) * l.qty);
+      });
+      const total = cart.reduce(function (t, l) { return t + unit(l.size, l.q) * l.qty; }, 0);
+      let msg = "السلام عليكم، أريد طلب:\n" + lines.join("\n") + "\nالمجموع: " + fmt(total);
+      const name = $("#cname").value.trim();
+      const addr = $("#caddr").value.trim();
+      if (name) { msg += "\nالاسم: " + name; }
+      if (addr) { msg += "\nالعنوان: " + addr; }
+      a.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
+      a.removeAttribute("aria-disabled");
+    }
+
+    function renderCart() {
+      const total = cart.reduce(function (t, l) { return t + unit(l.size, l.q) * l.qty; }, 0);
+      const count = cart.reduce(function (t, l) { return t + l.qty; }, 0);
+      $("#empty").hidden = cart.length > 0;
+      $("#checkout").hidden = cart.length === 0;
+      $("#lines").innerHTML = cart.map(function (l, k) {
+        return '<li>' +
+          '<div><strong class="lname">' + l.name + '</strong><span class="lsub">' + l.size + ' · ' + QUALITIES[l.q] + '</span></div>' +
+          '<div class="stepper">' +
+            '<button type="button" data-k="' + k + '" data-d="1" aria-label="زيادة الكمية">+</button>' +
+            '<output>' + l.qty + '</output>' +
+            '<button type="button" data-k="' + k + '" data-d="-1" aria-label="إنقاص الكمية">−</button>' +
+          '</div>' +
+          '<p class="lprice">' + fmt(unit(l.size, l.q) * l.qty) + '</p>' +
+        '</li>';
+      }).join("");
+      $("#total").textContent = fmt(total);
+      $("#bar").hidden = count === 0;
+      $("#barCount").textContent = "السلة (" + count + ")";
+      $("#barTotal").textContent = fmt(total);
+      updateSend();
+      saveCart();
+    }
+
+    const main = $("#perfumes");
+    main.innerHTML = PERFUMES.map(cardHTML).join("");
+    main.querySelectorAll(".perfume").forEach(updatePrice);
+
+    main.addEventListener("change", function (e) {
+      const card = e.target.closest(".perfume");
+      if (card) { updatePrice(card); }
+    });
+
+    main.addEventListener("click", function (e) {
+      const btn = e.target.closest("[data-act]");
+      if (!btn) { return; }
+      const card = btn.closest(".perfume");
+      const out = card.querySelector("output");
+      const qty = +out.textContent;
+      if (btn.dataset.act === "inc") { out.textContent = Math.min(qty + 1, 20); }
+      if (btn.dataset.act === "dec") { out.textContent = Math.max(qty - 1, 1); }
+      if (btn.dataset.act === "add") {
+        const s = selection(card);
+        addToCart({ name: s.name, size: s.size, q: s.q, qty: qty });
+        out.textContent = 1;
+        btn.textContent = "تمت الإضافة ✓";
+        setTimeout(function () { btn.textContent = "أضف إلى السلة"; }, 1200);
+      }
+    });
+
+    $("#lines").addEventListener("click", function (e) {
+      const btn = e.target.closest("button[data-k]");
+      if (!btn) { return; }
+      const k = +btn.dataset.k;
+      cart[k].qty += +btn.dataset.d;
+      if (cart[k].qty <= 0) { cart.splice(k, 1); }
+      if (cart.length) { cart.forEach(function (l) { l.qty = Math.min(l.qty, 20); }); }
+      renderCart();
+    });
+
+    $("#clear").addEventListener("click", function () {
+      cart.length = 0;
+      renderCart();
+    });
+    $("#wa-contact").href = "https://wa.me/" + PHONE;
+
+    $("#cname").addEventListener("input", updateSend);
+    $("#caddr").addEventListener("input", updateSend);
+    loadCart();
+    renderCart();
+  </script>
+</body>
+</html>
